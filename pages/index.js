@@ -1,5 +1,29 @@
 import Head from "next/head";
 import ResponsiveAppBar from "@/components/header/ResponsiveAppBar";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
+import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
+const defaultTheme = createTheme({
+  palette: {
+    mode: "light",
+  },
+});
 
 export default function Home() {
   return (
@@ -12,6 +36,39 @@ export default function Home() {
       </Head>
       <main>
         <ResponsiveAppBar />
+        <ThemeProvider theme={defaultTheme}>
+          <Container component="main" maxWidth="md">
+            <CssBaseline />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                height: "100vh",
+                justifyContent: "center",
+              }}
+            >
+              <Typography
+                variant="h1"
+                gutterBottom
+                fontSize={"48px"}
+                fontWeight={400}
+              >
+                ЖУРНАЛ ИДСТУ СО РАН
+              </Typography>
+              <Typography
+                variant="h2"
+                gutterBottom
+                fontSize={"36px"}
+                fontWeight={400}
+              >
+                Информационные, Вычислительные
+                <br /> и Управляющие Технологии
+              </Typography>
+            </Box>
+          </Container>
+        </ThemeProvider>
       </main>
     </>
   );

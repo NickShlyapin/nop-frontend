@@ -16,13 +16,22 @@ import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const pages = [];
+const pages = [
+  "Главная",
+  "Цели",
+  "Редколлегия",
+  "Содержание",
+  "Подписка",
+  "Авторам",
+  "Подписка",
+  "Контакты",
+];
 const settingsAuthUser = ["Profile", "Account", "Dashboard", "Logout"];
 const settingsNotAuthUser = ["SignIn", "SignUp"];
 
 const defaultTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
   },
 });
 
@@ -36,13 +45,15 @@ function MenuItems({ session }) {
       </MenuItem>
     ));
   } else {
-    return settingsNotAuthUser.map((setting) => (
-      <MenuItem key={setting}>
-        <Typography textAlign="center">
-          <Link href={`/${setting}`}>{setting}</Link>
-        </Typography>
-      </MenuItem>
-    ));
+    return (
+      <div>
+        <MenuItem>
+          <Typography textAlign="center">
+            <Link href={"/sign_in"}>Войти</Link>
+          </Typography>
+        </MenuItem>
+      </div>
+    );
   }
 }
 
@@ -69,10 +80,9 @@ function ResponsiveAppBar() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
             <Typography
               variant="h6"
               noWrap
